@@ -27,11 +27,12 @@ defined('MOODLE_INTERNAL') || die();
 
 use core\email;
 
-class handler extends email\handler {
+class manager extends email\manager {
     protected function configure_email_headers() {
         parent::configure_email_headers();
 
         // Add an additional header for testing.
-        $this->email->addCustomHeader('X-mail-testing', 'test');
+        $mailer = $this->email->get_mailer();
+        $mailer->addCustomHeader('X-mail-testing', 'test');
     }
 }
